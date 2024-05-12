@@ -49,7 +49,7 @@
     <div class="container d-flex align-items-center justify-content-between position-relative">
 
       <div class="logo">
-        <h1 class="text-light"><a href="/utama"><span>CiptoBeton</span></a></h1>
+        <h1 class="text-light"><a href="/"><span>CiptoBeton</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -62,11 +62,10 @@
           <li><a class="nav-link scrollto" href="#contact">Hubungi Kami</a></li>
           <li><a href='keranjang.php'><i class="fa-solid fa-cart-shopping"></i><p class="upper">&nbsp[0]</p></a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i> &nbsp {{ Auth::user()->name }} <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i> &nbsp Akun <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                {{-- <li><a href="/">login</a></li>
-                <li><a href="/register">Register</a></li> --}}
-                <li><a href="/logout">Keluar</a></li>
+                <li><a href="/login">login</a></li>
+                <li><a href="/register">Register</a></li>
             </ul>
         </li>
         </ul>

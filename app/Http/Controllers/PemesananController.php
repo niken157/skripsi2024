@@ -8,10 +8,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PemesananController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
         $penjualan = DB::table('penjualan')

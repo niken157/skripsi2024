@@ -26,7 +26,7 @@
                             <strong>{{ "Pastikan Password Benar"}} </strong>
                         </div>
                         @enderror
-                  <form method="post" action="/">
+                  <form method="post" action="/login">
                     @csrf
                       <div class="form mb-3">
                           <label class="label" for="email"><strong>User Name</strong></label>
@@ -40,6 +40,7 @@
                     <button type="submit" value="Log In" class="form-control btn btn-primary rounded submit px-3">Log In</button>
                 </div>
               </form>
+              <p class="text-center">Belum Terdaftar? <a href="/register">Daftar Sekarang</a></p>
             </div>
           </div>
             </div>

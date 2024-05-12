@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SesiController extends Controller
 {
@@ -33,7 +34,24 @@ class SesiController extends Controller
     }
     function logout(){
         Auth::logout();
-        return redirect('/');
+        return redirect('/utama');
     }
+    public function register() {
+        return view('auth.register');
+    }
+    public function create(Request $request)
+	{
+    DB::table('users')->insert([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => $request->password,
+        'role' => 'user',
+        'email_verified_at' => $request->email_verified_at,
+        'remember_token' => '123456',
+        'created_at' => $request->created_at,
+        'updated_at' => $request->updated_at
+    ]);
+    return redirect('/login');
+}
 
 }
