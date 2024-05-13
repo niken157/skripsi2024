@@ -44,7 +44,7 @@ class SesiController extends Controller
     DB::table('users')->insert([
         'name' => $request->name,
         'email' => $request->email,
-        'password' => $request->password,
+        'password' => bcrypt($request->password),
         'role' => 'user',
         'email_verified_at' => $request->email_verified_at,
         'remember_token' => '123456',

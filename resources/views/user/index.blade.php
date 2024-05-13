@@ -60,7 +60,14 @@
           <li><a class="nav-link scrollto" href="#services">Produk</a></li>
           <li><a class="nav-link scrollto" href="#about">Cara Pesan</a></li>
           <li><a class="nav-link scrollto" href="#contact">Hubungi Kami</a></li>
-          <li><a href='keranjang.php'><i class="fa-solid fa-cart-shopping"></i><p class="upper">&nbsp[0]</p></a></li>
+          @php
+                                $keranjang = DB::table('produk')
+                     ->join('keranjang', 'produk.id_produk', '=', 'keranjang.id_produk')
+                     ->join('users', 'keranjang.id_users', '=', 'users.id')
+                     ->where('users.id', Auth::user()->id)
+                    ->get();
+                            @endphp
+          <li><a href='/keranjang/{{ Auth::user()->id }}'><i class="fa-solid fa-cart-shopping"></i><p class="upper">&nbsp[{{ $keranjang->count()}}]</p></a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-user"></i> &nbsp {{ Auth::user()->name }} <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -120,7 +127,7 @@
                           <h5 class="card-title"><p class="upper">Rp. {{ $p->harga }}</p></h5>
                           <div class="row mx-auto">
                             <div class="col-md-6 d-grid gap-2">
-                            <a href="#" class="btn btn-warning"><i class='bx bx-search-alt' ></i> Detail</a>
+                            <a href="/detailproduk/{{ $p->id_produk }}" class="btn btn-warning"><i class='bx bx-search-alt' ></i> Detail</a>
                             </div>
                             <div class="col-md-6 d-grid gap-2">
                             <a href="#" class="btn btn-success"><i class='bx bxs-shopping-bag' ></i> Tambah </a>
@@ -221,6 +228,7 @@
   <script src="{{ asset('user/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
   <script src="{{ asset('user/assets/vendor/php-email-form/validate.js')}}"></script>
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Template Main JS File -->
   <script src="{{ asset('user/assets/js/main.js')}}"></script>

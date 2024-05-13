@@ -62,19 +62,6 @@ class PenjualanController extends Controller
 	// method untuk insert data ke table penjualan
 	public function store(Request $request)
 	{
-        // $validator = Validator::make($request->all(), [
-        //     'id_produk' => 'required',
-        //     'jumlah' => 'required',
-        //     'nama_pembeli' => 'required',
-		// 	'no_hp' => 'required',
-		// 	'alamat' => 'required',
-        //     'keterangan' => 'required',
-        //     'created_at' => 'required',
-        //     'updated_at' => 'required',
-        // ]);
-        // if ($validator->fails()) {
-        //     return back()->withInput($request->all())->withErrors($validator);
-        // }
 		// insert data ke table penjualan
 		DB::table('penjualan')->insert([
 			'id_produk' => $request->id_produk,
