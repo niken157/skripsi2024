@@ -67,6 +67,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/utama', [UserController::class, 'index'])->middleware('userAkses:user');
     Route::get('/keranjang/{id_users}', [UserController::class, 'keranjang'])->middleware('userAkses:user');
     Route::get('/keranjang/hapus/{id_keranjang}', [UserController::class, 'hapus'])->middleware('userAkses:user');
+    Route::get('/checkout/{id_users}', [UserController::class, 'checkout'])->middleware('userAkses:user');
     Route::get('/detailproduk/{id_produk}', [UserController::class, 'detail'])->middleware('userAkses:user');
     Route::post('/detailproduk/store', [UserController::class, 'store'])->middleware('userAkses:user');
     Route::get('/logout', [SesiController::class, 'logout']);

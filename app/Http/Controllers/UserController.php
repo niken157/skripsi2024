@@ -38,7 +38,28 @@ class UserController extends Controller
                      ->where('users.id', $id_users)
                      //->groupBy('ruangan.keterangan_ruangan')
                     ->get();
-        return view('user.keranjang',['produk' => $produk,'keranjang' => $keranjang]);
+        $total_semua = DB::table('produk')
+                    ->join('keranjang', 'produk.id_produk', '=', 'keranjang.id_produk')
+                    ->join('users', 'keranjang.id_users', '=', 'users.id')
+                    ->where('users.id', $id_users)
+                    ->sum(DB::raw('keranjang.jumlah * produk.harga'));
+        return view('user.keranjang',['produk' => $produk,'keranjang' => $keranjang,'total_semua' => $total_semua]);
+
+    }
+    public function checkout($id_users)
+    {
+        $produk = DB::table('produk')->orderBy('nama_produk', 'ASC')->get();
+        $keranjang = DB::table('produk')
+                     ->join('keranjang', 'produk.id_produk', '=', 'keranjang.id_produk')
+                     ->join('users', 'keranjang.id_users', '=', 'users.id')
+                     ->where('users.id', $id_users)
+                    ->get();
+        $total_semua = DB::table('produk')
+                    ->join('keranjang', 'produk.id_produk', '=', 'keranjang.id_produk')
+                    ->join('users', 'keranjang.id_users', '=', 'users.id')
+                    ->where('users.id', $id_users)
+                    ->sum(DB::raw('keranjang.jumlah * produk.harga'));
+        return view('user.checkout',['produk' => $produk,'keranjang' => $keranjang,'total_semua' => $total_semua]);
 
     }
     public function detail($id_produk)

@@ -114,8 +114,7 @@
 
         <div class="section-title" data-aos="fade-in" data-aos-delay="100">
           <h2>Produk</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
+          </div>
 
         <div class="row">
             @foreach($produk as $p)
@@ -126,12 +125,7 @@
                           <h5 class="card-title"><p class="upper">{{ $p->nama_produk }} {{ $p->lebar }}X{{ $p->tinggi }}</p></h5>
                           <h5 class="card-title"><p class="upper">Rp. {{ $p->harga }}</p></h5>
                           <div class="row mx-auto">
-                            <div class="col-md-6 d-grid gap-2">
                             <a href="/detailproduk/{{ $p->id_produk }}" class="btn btn-warning"><i class='bx bx-search-alt' ></i> Detail</a>
-                            </div>
-                            <div class="col-md-6 d-grid gap-2">
-                            <a href="#" class="btn btn-success"><i class='bx bxs-shopping-bag' ></i> Tambah </a>
-                        </div>
                           </div>
                         </div>
                       </div>
@@ -149,8 +143,7 @@
 
         <div class="section-title">
           <h2>Hubungi Kami</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
+          </div>
 
         <div class="row">
           <div class="col-lg-3 col-md-6">
