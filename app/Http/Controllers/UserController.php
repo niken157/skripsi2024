@@ -94,6 +94,14 @@ class UserController extends Controller
         return view('user.checkout',['produk' => $produk,'keranjang' => $keranjang,'total_semua' => $total_semua]);
 
     }
+    public function update(Request $request)
+	{
+        DB::table('keranjang')->where('id_keranjang',$request->id_keranjang)->update([
+			'jumlah' => $request->jumlah,
+            'updated_at' => $request->updated_at
+		]);
+		return redirect()->back();
+	}
     public function detail($id_produk)
     {
         $produk = DB::table('produk')->where('id_produk',$id_produk)->first();

@@ -22,6 +22,14 @@
     <section class="inner-page">
       <div class="container">
         <p>
+            @if ($keranjang->count() <= 0)
+            <div class="alert alert-danger" role="alert">
+                Keranjang Anda Masih Kosong
+              </div>
+              <tr>
+                <td colspan="7" style="text-align: right; font-weight: bold;"><a href="/utama#services" class="btn btn-success">Kehalaman Belanja</a></td>
+            </tr>
+            @elseif( $keranjang->count() > 0  )
             <table class="table table-striped">
                 <thead>
                   <tr>
@@ -47,10 +55,17 @@
                             $ttl = number_format($total, 0, ',', '.') . ',00'; // Format: 1.000.000
                             @endphp
                     <td>Rp.{{ $rupiah }}</td>
-                    <td>{{ $p->jumlah }}</td>
-                    {{-- <td><input type="number" name="jumlah" class="form-control" style="text-align: center;"></td> --}}
+                    {{-- <td>{{ $p->jumlah }}</td> --}}
+                    <form action="/keranjang/update" method="post">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="id_keranjang" value="{{ $p->id_keranjang }}">
+                    <td><input type="number" name="jumlah" value="{{ $p->jumlah }}" class="form-control" style="text-align: center;"></td>
+                    <input type="hidden" name="updated_at" value="<?php echo date('Y-m-d h:i:s'); ?>">
                     <td>Rp.{{ $ttl }}</td>
-                    <td>  <a class="btn btn-outline-danger" onclick="return confirm('Apakah Anda Yakin Menghapus Data Ini?')" href="/keranjang/hapus/{{ $p->id_keranjang }}" role="button" title="Hapus"><i class="fas fa-fw fa-trash"></i>Hapus</a></td>
+                    <td>
+                        <input type="submit" value="Edit" class="btn btn-primary">
+                    </form>
+                        <a class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin Menghapus Data Ini?')" href="/keranjang/hapus/{{ $p->id_keranjang }}" role="button" title="Hapus"><i class="fas fa-fw fa-trash"></i>Hapus</a></td>
                   </tr>
                     @endforeach
                     <tr>
@@ -70,6 +85,7 @@
             <tr>
                 <td colspan="7" style="text-align: right; font-weight: bold;"><a href="/utama#services" class="btn btn-success">Lanjutkan Belanja</a> <a href="/checkout/{{ Auth::user()->id }}" class="btn btn-primary">Checkout</a></td>
             </tr>
+            @endif
         </p>
       </div>
     </section>

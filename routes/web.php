@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function() {
     //halaman user
     Route::get('/utama', [UserController::class, 'index'])->middleware('userAkses:user');
     Route::get('/keranjang/{id_users}', [UserController::class, 'keranjang'])->middleware('userAkses:user');
+    Route::post('/keranjang/update', [UserController::class, 'update'])->middleware('userAkses:user');
     Route::get('/keranjang/hapus/{id_keranjang}', [UserController::class, 'hapus'])->middleware('userAkses:user');
     Route::get('/checkout/{id_users}', [UserController::class, 'checkout'])->middleware('userAkses:user');
     Route::post('/checkoutproses', [UserController::class, 'prosescheckout'])->middleware('userAkses:user'); //tambah penjualan

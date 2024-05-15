@@ -103,7 +103,7 @@
           </div>
 <!-- ======= Isi cara pemesanan ======= -->
         <div class="text-center">
-          <img src="{{ asset('user/assets/img/portfolio/portfolio-3.jpg')}}" class="img-fluid" alt="">
+          <img src="{{ asset('user/assets/img/portfolio/ff.png')}}" class="img-fluid" alt="">
         </div>
       </div>
     </section><!-- End About Section -->
