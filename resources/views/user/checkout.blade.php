@@ -9,7 +9,7 @@
       <div class="container">
 <br>
         <div class="d-flex justify-content-between align-items-center">
-          <h2><b>Daftar Pesanan {{ Auth::user()->name }}</b></h2>
+          <h2><b>CHECKOUT</b></h2>
           {{-- <ol>
             <li><a href="index.html">Beranda</a></li>
             <li>Keranjang</li>
@@ -59,11 +59,68 @@
                             @endphp
                         <th ><b>Rp.{{ $semua}}</b></th>
                     </tr>
+
                 </tbody>
               </table>
-            <tr>
-                <td colspan="7" style="text-align: right; font-weight: bold;"><a href="/utama#services" class="btn btn-success">Order Sekarang</a> <a href="/keranjang/{{ Auth::user()->id }}" class="btn btn-danger">Cancel</a></td>
-            </tr>
+              <div class="alert alert-primary" role="alert">
+                Pastikan Pesanan Anda Sudah Benar
+              </div>
+              <div class="alert alert-success" role="alert">
+                isi Form dibawah ini
+              </div>
+              <div class="card">
+                <div class="card-body">
+                    <form action="/checkoutproses" method="POST">
+                    @csrf
+                    <fieldset>
+                        @php
+                        $nomor_sewa=rand(1000000,9999999);
+                        @endphp
+                        <input type="hidden" name="nomer_penjualan" value="{{ $nomor_sewa }}?>">
+                        <div class="row">
+                          <div class="col">
+                              <div class="mb-3">
+                                  <label for="exampleFormControlInput1" class="form-label">Nama</label>
+                          <input name="nama_pembeli" type="text" class="form-control @error('nama_pembeli') is-invalid @enderror" id="exampleFormControlInput1" value="{{ old('nama_pembeli') }}" required>
+                          @error('nama_pembeli')
+                              <span class="invalid-feedback" role="alert">
+                              <strong>{{$message}}</strong>
+                              </span>
+                          @enderror
+                              </div>
+                          </div>
+                      </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">NO HP</label>
+                                <input name="no_hp" type="text" class="form-control @error('no_hp') is-invalid @enderror" id="exampleFormControlInput1" value="{{ old('no_hp') }}" required>
+                                @error('no_hp')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                    </span>
+                                @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Alamat</label>
+                                <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <input type="hidden" name="nama_pembeli" value="{{ Auth::user()->name }}"> --}}
+                            <input type="hidden" name="keterangan" value="pesan">
+                            <input type="hidden" name="created_at" value="<?php echo date('Y-m-d h:i:s'); ?>">
+                            <input type="hidden" name="updated_at" value="<?php echo date('Y-m-d h:i:s'); ?>">
+                        <input type="submit" value="Order Sekarang" class="btn btn-primary">
+                        <a href="/keranjang/{{ Auth::user()->id }}" class="btn btn-danger">Cancel</a>
+                        </fieldset>
+                </form>
+                </div>
+                </div>
         </p>
       </div>
     </section>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -23,6 +24,12 @@ class UserController extends Controller
         return view('user.index',['produk' => $produk]);
 
     }
+    public function selesai()
+    {
+        $produk = DB::table('produk')->orderBy('nama_produk', 'ASC')->get();
+        return view('user.konfirmasi',['produk' => $produk]);
+
+    }
     public function nolog()
     {
         $produk = DB::table('produk')->orderBy('nama_produk', 'ASC')->get();
@@ -36,7 +43,6 @@ class UserController extends Controller
                      ->join('keranjang', 'produk.id_produk', '=', 'keranjang.id_produk')
                      ->join('users', 'keranjang.id_users', '=', 'users.id')
                      ->where('users.id', $id_users)
-                     //->groupBy('ruangan.keterangan_ruangan')
                     ->get();
         $total_semua = DB::table('produk')
                     ->join('keranjang', 'produk.id_produk', '=', 'keranjang.id_produk')
@@ -46,6 +52,32 @@ class UserController extends Controller
         return view('user.keranjang',['produk' => $produk,'keranjang' => $keranjang,'total_semua' => $total_semua]);
 
     }
+    public function prosescheckout(Request $request)
+	{
+		// insert data ke table penjualan
+        $keranjang = DB::table('produk')
+                     ->join('keranjang', 'produk.id_produk', '=', 'keranjang.id_produk')
+                     ->join('users', 'keranjang.id_users', '=', 'users.id')
+                     ->where('users.id', Auth::user()->id)
+                     //->where('users.id', '15')
+                    ->get();
+        foreach ($keranjang as $p) {
+		DB::table('penjualan')->insert([
+			'id_produk' => $p->id_produk,
+			'jumlah' => $p->jumlah,
+            'nomer_penjualan' => $request->nomer_penjualan,
+			'nama_pembeli' => $request->nama_pembeli,
+			'no_hp' => $request->no_hp,
+            'alamat' => $request->alamat,
+            'keterangan' => $request->keterangan,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at
+		]);
+    }
+        DB::table('keranjang')->where('id_users', Auth::user()->id)->delete();
+        Alert::success('Pesanan DiProses!', 'Sedang Menunggu Pembayaran');
+        return redirect('/konfirmasi');
+	}
     public function checkout($id_users)
     {
         $produk = DB::table('produk')->orderBy('nama_produk', 'ASC')->get();
