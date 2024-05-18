@@ -75,7 +75,7 @@ class DetailController extends Controller
     public function hapus_s()
 	{
 		DB::table('penjualan')->truncate();
-        alert()->info('Berhasil Menghapus','Data Semua penjualan Telah Berhasil Dihapus');
+        Alert()->info('Berhasil Menghapus','Data Semua penjualan Telah Berhasil Dihapus');
 		return redirect('/penjualan');
 	}
 

@@ -14,7 +14,7 @@
     <div class="card-header">
             <!-- <i class="fas fa-table me-1"></i> -->
             <span style=" font-size: 1cm;">
-            DETAIL PENJUALAN
+            DETAIL RIWAYAT
             <span style="float: right">
 
          </div>
@@ -71,6 +71,6 @@
             <a class="btn btn-outline-primary" href="nota/{{ $pertama->nomer_penjualan }}" role="button" title="Cetak Data Penjualan"><i class="fa-solid fa-print" target="_blank"></i>&nbsp;Nota</a>
         </div>
     </div>
-    
+
 
 @endsection

@@ -65,8 +65,11 @@
               <div class="alert alert-primary" role="alert">
                 Pastikan Pesanan Anda Sudah Benar
               </div>
+              <div class="alert alert-danger" role="alert">
+                Dimohon screenshot halaman ini sebelum checkout!
+              </div>
               <div class="alert alert-success" role="alert">
-                isi Form dibawah ini
+                isi Form dibawah ini!
               </div>
               <div class="card">
                 <div class="card-body">

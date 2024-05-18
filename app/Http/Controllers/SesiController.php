@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class SesiController extends Controller
 {
@@ -41,6 +42,16 @@ class SesiController extends Controller
     }
     public function create(Request $request)
 	{
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:users',
+            'email' => 'required|unique:users|email',
+            'password' => 'required',
+            'created_at' => 'required',
+            'updated_at' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return back()->withInput($request->all())->withErrors($validator);
+        }
     DB::table('users')->insert([
         'name' => $request->name,
         'email' => $request->email,

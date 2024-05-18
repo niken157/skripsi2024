@@ -99,8 +99,7 @@
       <div class="container">
         <div class="section-title" data-aos="fade-in" data-aos-delay="100">
             <h2>Cara Pemesanan</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-          </div>
+            </div>
 <!-- ======= Isi cara pemesanan ======= -->
         <div class="text-center">
           <img src="{{ asset('user/assets/img/portfolio/ff.png')}}" class="img-fluid" alt="">
